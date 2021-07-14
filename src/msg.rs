@@ -1,16 +1,33 @@
+use cosmwasm_std::CanonicalAddr;
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
+// #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+// pub struct InitMsg {
+//     pub count: i32,
+// }
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct InitMsg {
-    pub count: i32,
+    pub buyer: CanonicalAddr,
+    pub seller: CanonicalAddr,
+    pub expiration: u64,
+    pub value: u64,
+    pub secret_hash: String
 }
+
+// #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+// #[serde(rename_all = "snake_case")]
+// pub enum HandleMsg {
+//     Increment {},
+//     Reset { count: i32 },
+// }
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 #[serde(rename_all = "snake_case")]
 pub enum HandleMsg {
-    Increment {},
-    Reset { count: i32 },
+    Claim { secret: String },
+    Refund {},
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]

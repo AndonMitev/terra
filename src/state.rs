@@ -6,10 +6,20 @@ use cosmwasm_storage::{singleton, singleton_read, ReadonlySingleton, Singleton};
 
 pub static CONFIG_KEY: &[u8] = b"config";
 
+// #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
+// pub struct State {
+//     pub count: i32,
+//     pub owner: CanonicalAddr,
+// }
+
+
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct State {
-    pub count: i32,
-    pub owner: CanonicalAddr,
+    pub buyer: CanonicalAddr,
+    pub seller: CanonicalAddr,
+    pub expiration: u64,
+    pub value: u64,
+    pub secret_hash: String
 }
 
 pub fn config<S: Storage>(storage: &mut S) -> Singleton<S, State> {
