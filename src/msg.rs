@@ -1,4 +1,4 @@
-use cosmwasm_std::CanonicalAddr;
+use cosmwasm_std::{CanonicalAddr, HumanAddr};
 use schemars::JsonSchema;
 use serde::{Deserialize, Serialize};
 
@@ -9,11 +9,11 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
 pub struct InitMsg {
-    pub buyer: CanonicalAddr,
-    pub seller: CanonicalAddr,
+    pub buyer: HumanAddr,
+    pub seller: HumanAddr,
     pub expiration: u64,
     pub value: u64,
-    pub secret_hash: String
+    pub secret_hash: String,
 }
 
 // #[derive(Serialize, Deserialize, Clone, Debug, PartialEq, JsonSchema)]
